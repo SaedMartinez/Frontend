@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Empleado } from '../empleado';
 import { EmpleadosService } from '../empleados.service';
 
@@ -10,7 +11,7 @@ import { EmpleadosService } from '../empleados.service';
 export class ListaEmpleadosComponent implements OnInit {
 
   empleados: Empleado[];
-  constructor(private empService: EmpleadosService) { }
+  constructor(private eService: EmpleadosService, private router: Router) { }
 
   ngOnInit(): void {
     this.obtenerEmpleados();
@@ -18,8 +19,21 @@ export class ListaEmpleadosComponent implements OnInit {
 
 
   private obtenerEmpleados() {
-    this.empService.obtenerListaEmpleados().subscribe(dato => {
+    this.eService.obtenerListaEmpleados().subscribe(dato => {
       this.empleados = dato;
+    });
+  }
+
+  empleadoEdit(id:number){
+    this.eService.buscarEmpleadoID(id).subscribe(dato => {
+      console.log(dato);
+    });
+  }
+
+  empleadoDelete(id:number){
+    this.eService.eliminarEmpleado(id).subscribe(dato => {
+      console.log(dato)
+      this.obtenerEmpleados();
     });
   }
 }

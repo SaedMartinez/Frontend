@@ -21,4 +21,16 @@ export class EmpleadosService {
   obtenerListaEmpleados(): Observable<Empleado[]> {
     return this.httpClient.get<Empleado[]>(`${this.baseURL}`);
   }
+
+  buscarEmpleadoID(id: number): Observable<Empleado>{
+    return this.httpClient.get<Empleado>(`${this.baseURL}/${id}`);
+  }
+
+  actualizarEmpleados(id: number,empleado: Empleado): Observable<Object> {
+    return this.httpClient.put(`${this.baseURL}/${id}`,empleado);
+  }
+
+  eliminarEmpleado(id: number): Observable<Object>{
+    return this.httpClient.delete(`${this.baseURL}/${id}`);
+  }
 }
