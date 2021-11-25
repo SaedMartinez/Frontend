@@ -10,6 +10,7 @@ import { EmpleadosService } from '../empleados.service';
 })
 export class ListaEmpleadosComponent implements OnInit {
 
+  sendWorkerF: Empleado = new Empleado();
   empleados: Empleado[];
   constructor(private eService: EmpleadosService, private router: Router) { }
 
@@ -24,13 +25,15 @@ export class ListaEmpleadosComponent implements OnInit {
     });
   }
 
-  empleadoEdit(id:number){
+  empleadoEdit(id: number) {
     this.eService.buscarEmpleadoID(id).subscribe(dato => {
-      console.log(dato);
+      this.sendWorkerF = dato;
     });
+    this.router.navigate(['/actualizar']);
+
   }
 
-  empleadoDelete(id:number){
+  empleadoDelete(id: number) {
     this.eService.eliminarEmpleado(id).subscribe(dato => {
       console.log(dato)
       this.obtenerEmpleados();
