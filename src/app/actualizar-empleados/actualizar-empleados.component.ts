@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Empleado } from '../empleado';
 import { EmpleadosService } from '../empleados.service';
 
@@ -10,16 +10,27 @@ import { EmpleadosService } from '../empleados.service';
 })
 export class ActualizarEmpleadosComponent implements OnInit {
 
-@Input() receiveworkerF:any;
+
+  id: number;
 
   empleado:Empleado = new Empleado();
 
-  constructor(private eService:EmpleadosService, router: Router) { }
+  constructor(private eService:EmpleadosService, private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.obtenerInfoEmploy(this.id);
   }
 
+  obtenerInfoEmploy(inID:number){
+    this.eService.buscarEmpleadoID(inID).subscribe( dato => {
+      this.empleado=dato;
+    });
+  }
 
+  onSubmit(){
+    
+  }
 
 
   

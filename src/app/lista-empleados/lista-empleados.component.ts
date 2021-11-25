@@ -26,11 +26,11 @@ export class ListaEmpleadosComponent implements OnInit {
   }
 
   empleadoEdit(id: number) {
-    this.eService.buscarEmpleadoID(id).subscribe(dato => {
-      this.sendWorkerF = dato;
-    });
-    this.router.navigate(['/actualizar']);
+    this.router.navigate(['/actualizar',id]);
+  }
 
+  empleadoInfo(id: number){
+    this.router.navigate(['/actualizar',id]);
   }
 
   empleadoDelete(id: number) {
