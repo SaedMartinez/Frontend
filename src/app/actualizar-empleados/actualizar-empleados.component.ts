@@ -28,8 +28,16 @@ export class ActualizarEmpleadosComponent implements OnInit {
     });
   }
 
+  actualizarEmployee(id:number,emp:Empleado){
+    this.eService.actualizarEmpleados(id,emp).subscribe( dato => {
+      console.log(dato);
+    });
+  }
+
+
   onSubmit(){
-    
+    this.actualizarEmployee(this.empleado.id,this.empleado);
+    this.router.navigate(['/empleados']);
   }
 
 

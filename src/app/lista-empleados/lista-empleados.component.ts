@@ -10,7 +10,7 @@ import { EmpleadosService } from '../empleados.service';
 })
 export class ListaEmpleadosComponent implements OnInit {
 
-  sendWorkerF: Empleado = new Empleado();
+
   empleados: Empleado[];
   constructor(private eService: EmpleadosService, private router: Router) { }
 
@@ -30,7 +30,7 @@ export class ListaEmpleadosComponent implements OnInit {
   }
 
   empleadoInfo(id: number){
-    this.router.navigate(['/actualizar',id]);
+    this.router.navigate(['/detalle',id]);
   }
 
   empleadoDelete(id: number) {
